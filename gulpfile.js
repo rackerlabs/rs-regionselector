@@ -1,16 +1,29 @@
-var gulp, html2js, jshint, karma, ngmin, stylish, src, templates, test, dependencies;
+var gulp = require('gulp');
+var connect = require('gulp-connect');
+var html2js = require('gulp-ng-html2js');
+var jshint = require('gulp-jshint');
+var karma = require('gulp-karma');
+var ngmin = require('gulp-ngmin');
+var stylish = require('jshint-stylish');
 
-gulp = require('gulp');
-html2js = require('gulp-ng-html2js');
-jshint = require('gulp-jshint');
-karma = require('gulp-karma');
-ngmin = require('gulp-ngmin');
-stylish = require('jshint-stylish');
+var docs = 'docs/**/*';
+var src = 'src/javascripts/**/*.js';
+var templates = 'src/templates/**/*.html';
+var test = 'test/**/*.js';
+var dependencies = 'bower_components/angular/angular.js';
 
-src = 'src/javascripts/**/*.js';
-templates = 'src/templates/**/*.html';
-test = 'test/**/*.js';
-dependencies = 'bower_components/angular/angular.js';
+gulp.task('connect', function () {
+  return connect.server({
+    root: ['dist', 'docs'],
+    port: 8000,
+    livereload: true
+  });
+});
+
+gulp.task('docs', function () {
+  return gulp.src(docs)
+    .pipe(connect.reload());
+});
 
 gulp.task('javascript', function () {
   return gulp.src(src)
@@ -42,5 +55,12 @@ gulp.task('test:watch', function () {
     .pipe(karma({ configFile: 'karma.conf.js', action: 'watch' }));
 });
 
+gulp.task('watch', function () {
+  gulp.watch(docs, ['docs']);
+  gulp.watch(src, ['javascript']);
+  gulp.watch(templates, ['templates']);
+});
+
 gulp.task('default', ['lint', 'test:run', 'dist']);
-gulp.task('dist', ['templates', 'javascript']);
+gulp.task('dist', ['docs', 'templates', 'javascript']);
+gulp.task('server', ['dist', 'connect', 'watch']);
