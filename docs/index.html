@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html ng-app="rsPopover">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,14 +9,29 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <link rel="stylesheet" href="https://eafdbc63c97ce6bec9ef-b0a668e5876bef6fe25684caf71db405.ssl.cf1.rackcdn.com/v1-latest/canon.min.css">
+  <link rel="stylesheet" href="popover.css">
   <link rel="stylesheet" href="documentation.css">
 </head>
 <body>
-  <header>Header</header>
-  <section>Description</section>
-  <section>Popover Example</section>
-  <section>Popover Form Example</section>
-  <section>Programmatic Example</section>
-  <footer>Racker Powered</footer>
+  <div class="rs-container" style="padding-top: 50px;" ng-controller="PopoverController">
+    <div class="rs-btn-group">
+      <button class="rs-btn" ng-click="show()">Show</button>
+    </div>
+    <div class="rs-popover-wrapper" ng-hide="!visible">
+      <div class="rs-popover-overlay" ng-click="hide()"></div>
+      <div class="rs-popover">
+        <div class="rs-popover-arrow rs-popover-arrow-top-left"></div>
+        <div class="rs-popover-content">
+          <div class="rs-popover-body">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sit, dignissimos suscipit dolorum aspernatur placeat voluptates aut! Esse, ipsa asperiores repudiandae eveniet nulla explicabo quas corporis quidem aut dignissimos? Officia, suscipit.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="application/javascript" src="angular.js"></script>
+  <script type="application/javascript" src="module.js"></script>
+  <script type="application/javascript" src="popover_controller.js"></script>
 </body>
 </html>

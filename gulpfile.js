@@ -10,11 +10,11 @@ var docs = 'docs/**/*';
 var src = 'src/javascripts/**/*.js';
 var templates = 'src/templates/**/*.html';
 var test = 'test/**/*.js';
-var dependencies = 'bower_components/angular/angular.js';
+var dependencies = ['bower_components/angular/angular.js', 'bower_components/angular-mocks/angular-mocks.js'];
 
 gulp.task('connect', function () {
   return connect.server({
-    root: ['dist', 'docs'],
+    root: ['bower_components/angular', 'dist', 'docs'],
     port: 8000,
     livereload: true
   });
@@ -46,12 +46,12 @@ gulp.task('templates', function () {
 });
 
 gulp.task('test:run', function () {
-  return gulp.src([dependencies, src, test])
+  return gulp.src(dependencies.concat([src, test]))
     .pipe(karma({ configFile: 'karma.conf.js', action: 'run' }));
 });
 
 gulp.task('test:watch', function () {
-  return gulp.src([dependencies, src, test])
+  return gulp.src(dependencies.concat([src, test]))
     .pipe(karma({ configFile: 'karma.conf.js', action: 'watch' }));
 });
 
@@ -62,5 +62,5 @@ gulp.task('watch', function () {
 });
 
 gulp.task('default', ['lint', 'test:run', 'dist']);
-gulp.task('dist', ['docs', 'templates', 'javascript']);
+gulp.task('dist', ['templates', 'javascript', 'docs']);
 gulp.task('server', ['dist', 'connect', 'watch']);
