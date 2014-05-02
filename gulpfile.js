@@ -7,7 +7,8 @@ var ngmin = require('gulp-ngmin');
 var stylish = require('jshint-stylish');
 
 var docs = 'docs/**/*';
-var src = 'src/javascripts/**/*.js';
+var javascripts = 'src/javascripts/**/*.js';
+var stylesheets = 'src/stylesheets/**/*.css';
 var templates = 'src/templates/**/*.html';
 var test = 'test/**/*.js';
 var dependencies = ['bower_components/angular/angular.js', 'bower_components/angular-mocks/angular-mocks.js'];
@@ -26,16 +27,22 @@ gulp.task('docs', function () {
 });
 
 gulp.task('javascript', function () {
-  return gulp.src(src)
+  return gulp.src(javascripts)
     .pipe(ngmin())
     .pipe(gulp.dest('dist'))
     .pipe(connect.reload());
 });
 
 gulp.task('lint', function () {
-  return gulp.src([src, test])
+  return gulp.src([javascripts, test])
     .pipe(jshint('.jshintrc'))
     .pipe(jshint.reporter(stylish));
+});
+
+gulp.task('stylesheets', function () {
+  return gulp.src(stylesheets)
+    .pipe(gulp.dest('dist'))
+    .pipe(connect.reload());
 });
 
 gulp.task('templates', function () {
@@ -46,21 +53,22 @@ gulp.task('templates', function () {
 });
 
 gulp.task('test:run', function () {
-  return gulp.src(dependencies.concat([src, test]))
+  return gulp.src(dependencies.concat([javascripts, test]))
     .pipe(karma({ configFile: 'karma.conf.js', action: 'run' }));
 });
 
 gulp.task('test:watch', function () {
-  return gulp.src(dependencies.concat([src, test]))
+  return gulp.src(dependencies.concat([javascripts, test]))
     .pipe(karma({ configFile: 'karma.conf.js', action: 'watch' }));
 });
 
 gulp.task('watch', function () {
   gulp.watch(docs, ['docs']);
-  gulp.watch(src, ['javascript']);
+  gulp.watch(javascripts, ['javascript']);
+  gulp.watch(stylesheets, ['stylesheets']);
   gulp.watch(templates, ['templates']);
 });
 
 gulp.task('default', ['lint', 'test:run', 'dist']);
-gulp.task('dist', ['templates', 'javascript', 'docs']);
+gulp.task('dist', ['templates', 'javascript', 'stylesheets', 'docs']);
 gulp.task('server', ['dist', 'connect', 'watch']);
