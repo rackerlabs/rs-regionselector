@@ -69,6 +69,7 @@ gulp.task('watch', function () {
   gulp.watch(templates, ['templates']);
 });
 
-gulp.task('default', ['lint', 'test:run', 'dist']);
+gulp.task('default', ['test', 'dist']);
 gulp.task('dist', ['templates', 'javascript', 'stylesheets', 'docs']);
 gulp.task('server', ['dist', 'connect', 'watch']);
+gulp.task('test', ['lint', 'test:run']);
