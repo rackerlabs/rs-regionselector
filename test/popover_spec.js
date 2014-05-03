@@ -1,7 +1,13 @@
 describe('rsPopover', function () {
   'use strict';
 
-  it('is defined', function () {
-    expect(angular.module('rsPopover')).toBeDefined();
+  var scope, element;
+
+  beforeEach(function () {
+    module('rsPopover');
+    inject(function ($rootScope, $compile) {
+      scope = $rootScope.$new();
+      element = $compile('<rs-popover>Content</rs-popover>')($rootScope);
+    });
   });
 });

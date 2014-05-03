@@ -1,37 +1,37 @@
 describe('PopoverController', function () {
   'use strict';
 
-  var $scope;
+  var scope;
 
   beforeEach(function () {
     module('rsPopover');
     inject(function ($rootScope, $controller) {
-      $scope = $rootScope.$new();
-      $controller('PopoverController', { $scope: $scope });
+      scope = $rootScope.$new();
+      $controller('PopoverController', { $scope: scope });
     });
   });
 
-  describe('visible', function () {
+  describe('open', function () {
     it('is initially false', function () {
-      expect($scope.visible).toBe(false);
+      expect(scope.open).toBe(false);
     });
   });
 
   describe('show', function () {
-    it('sets visible to true', function () {
-      $scope.visible = false;
-      $scope.show();
+    it('sets open to true', function () {
+      scope.open = false;
+      scope.show();
 
-      expect($scope.visible).toBe(true);
+      expect(scope.open).toBe(true);
     });
   });
 
   describe('hide', function () {
-    it('sets visible to false', function () {
-      $scope.visible = true;
-      $scope.hide();
+    it('sets open to false', function () {
+      scope.open = true;
+      scope.hide();
 
-      expect($scope.visible).toBe(false);
+      expect(scope.open).toBe(false);
     });
   });
 });

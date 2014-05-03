@@ -47,8 +47,8 @@ gulp.task('stylesheets', function () {
 
 gulp.task('templates', function () {
   return gulp.src(templates)
-    .pipe(html2js({ moduleName: 'rsPopoverTemplates' }))
-    .pipe(gulp.dest('dist'))
+    .pipe(html2js({ moduleName: 'rsPopover', prefix: 'templates/' }))
+    .pipe(gulp.dest('dist/templates'))
     .pipe(connect.reload());
 });
 

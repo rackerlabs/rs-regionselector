@@ -1,5 +1,5 @@
 <!doctype html>
-<html ng-app="rsPopover">
+<html ng-app="rsPopoverDemo">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,25 +13,35 @@
   <link rel="stylesheet" href="documentation.css">
 </head>
 <body>
-  <div class="rs-container" style="padding-top: 50px;" ng-controller="PopoverController">
+  <div class="rs-container" style="padding-top: 50px;" ng-controller="DemoController">
     <div class="rs-btn-group">
       <button class="rs-btn" ng-click="show()">Show</button>
     </div>
-    <div class="rs-popover-wrapper" ng-hide="!visible">
-      <div class="rs-popover-overlay" ng-click="hide()"></div>
-      <div class="rs-popover">
-        <div class="rs-popover-arrow rs-popover-arrow-top-left"></div>
-        <div class="rs-popover-content">
-          <div class="rs-popover-body">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sit, dignissimos suscipit dolorum aspernatur placeat voluptates aut! Esse, ipsa asperiores repudiandae eveniet nulla explicabo quas corporis quidem aut dignissimos? Officia, suscipit.
-          </div>
-        </div>
+    <rs-popover id="mypopoverid" open="open">
+      <div class="rs-popover-body">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea, tempore, odio, dolorum, omnis architecto pariatur dolor blanditiis similique laudantium in nemo veniam porro? Impedit, enim minus molestias tenetur ab possimus!
       </div>
-    </div>
+    </rs-popover>
   </div>
 
   <script type="application/javascript" src="angular.js"></script>
   <script type="application/javascript" src="module.js"></script>
+  <script type="application/javascript" src="popover.js"></script>
   <script type="application/javascript" src="popover_controller.js"></script>
+  <script type="application/javascript" src="templates/popover.js"></script>
+
+  <script type="application/javascript">
+
+  angular.module('rsPopoverDemo', ['rsPopover']).controller('DemoController', function ($scope) {
+    $scope.open = true;
+    $scope.show = function () {
+      console.log('show');
+    };
+    $scope.hide = function () {
+      console.log('hide');
+    };
+  });
+
+  </script>
 </body>
 </html>
