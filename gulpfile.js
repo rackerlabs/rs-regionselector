@@ -54,7 +54,10 @@ gulp.task('templates', function () {
 
 gulp.task('test:run', function () {
   return gulp.src(dependencies.concat([javascripts, test]))
-    .pipe(karma({ configFile: 'karma.conf.js', action: 'run' }));
+    .pipe(karma({ configFile: 'karma.conf.js', action: 'run' }))
+    .on('error', function (error) {
+      throw error;
+    });
 });
 
 gulp.task('test:watch', function () {
