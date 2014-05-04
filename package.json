@@ -2,7 +2,8 @@
   "name": "rs-popover",
   "version": "0.0.0",
   "description": "Angular directive for Canon popovers.",
-  "homepage": "http://rackerlabs.github.io/rs-popover/",
+  "homepage": "http://rackerlabs.github.io/rs-popover",
+  "repository": "https://github.com/rackerlabs/rs-popover",
   "license": "MIT",
   "authors": [
     "Brad Gignac <bgignac@bradgignac.com>"
@@ -19,6 +20,7 @@
   "dependencies": {},
   "devDependencies": {
     "gulp": "~3.6.2",
+    "gulp-connect": "~2.0.5",
     "gulp-jshint": "~1.5.5",
     "gulp-karma": "0.0.4",
     "gulp-ng-html2js": "~0.1.6",
@@ -26,7 +28,6 @@
     "jshint-stylish": "~0.2.0",
     "karma": "~0.12.14",
     "karma-jasmine": "~0.1.5",
-    "karma-phantomjs-launcher": "~0.1.4",
-    "gulp-connect": "~2.0.5"
+    "karma-phantomjs-launcher": "~0.1.4"
   }
 }
