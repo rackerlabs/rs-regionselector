@@ -3,31 +3,39 @@
   "version": "0.0.0",
   "description": "Angular directive for Canon popovers.",
   "homepage": "http://rackerlabs.github.io/rs-popover",
-  "repository": "https://github.com/rackerlabs/rs-popover",
+  "bugs": "https://github.com/rackerlabs/rs-popover/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rackerlabs/rs-popover"
+  },
   "license": "MIT",
-  "authors": [
-    "Brad Gignac <bgignac@bradgignac.com>"
-  ],
+  "author": "Brad Gignac <bgignac@bradgignac.com>",
+  "contributors": [],
   "keywords": [
     "angular",
     "canon",
     "rackspace"
   ],
   "main": "lib/popover.js",
+  "engines": {},
   "scripts": {
     "test": "gulp test"
   },
   "dependencies": {},
   "devDependencies": {
     "gulp": "~3.6.2",
+    "gulp-browserify": "~0.5.0",
+    "gulp-clean": "~0.2.4",
     "gulp-connect": "~2.0.5",
     "gulp-jshint": "~1.5.5",
+    "gulp-rename": "~1.2.0",
+    "gulp-uglify": "~0.2.1",
     "gulp-karma": "0.0.4",
-    "gulp-ng-html2js": "~0.1.6",
-    "gulp-ngmin": "~0.2.0",
     "jshint-stylish": "~0.2.0",
     "karma": "~0.12.14",
+    "karma-browserifast": "~0.6.0",
     "karma-jasmine": "~0.1.5",
-    "karma-phantomjs-launcher": "~0.1.4"
+    "karma-phantomjs-launcher": "~0.1.4",
+    "partialify": "~3.1.1"
   }
 }
