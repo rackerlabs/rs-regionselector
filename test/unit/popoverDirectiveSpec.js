@@ -8,7 +8,7 @@ describe('popoverDirective', function () {
       var scope, attrs, registry, directiveInstance;
 
       scope = {};
-      attrs = { id: 'popover-id' };
+      attrs = { popoverId: 'popover-id' };
       registry = {};
       registry.register = jasmine.createSpy('register');
 

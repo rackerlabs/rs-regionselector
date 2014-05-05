@@ -17,7 +17,7 @@
     <div class="rs-btn-group">
       <button class="rs-btn" ng-click="show()">Show</button>
     </div>
-    <rs-popover id="programmatic-demo">
+    <rs-popover popover-id="programmatic-demo">
       <div class="rs-popover-body">
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea, tempore, odio, dolorum, omnis architecto pariatur dolor blanditiis similique laudantium in nemo veniam porro? Impedit, enim minus molestias tenetur ab possimus!</p>
         <p><button class="rs-btn rs-btn-link" ng-click="hide()">Hide</button></p>
@@ -34,12 +34,11 @@
       <button class="rs-btn" rs-popover-trigger popover-id="declarative-demo">Show with Attribute</button>
       <button class="rs-btn" rs-popover-trigger popover-id="declarative-demo" popover-event="mouseover">Show on Hover</button>
     </p>
-    <rs-popover id="declarative-demo">
+    <rs-popover popover-id="declarative-demo">
       <div class="rs-popover-body">
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea, tempore, odio, dolorum, omnis architecto pariatur dolor blanditiis similique laudantium in nemo veniam porro? Impedit, enim minus molestias tenetur ab possimus!</p>
         <p>
-          <button class="rs-btn rs-btn-link" rs-popover-trigger popover-id="declarative-demo" popover-action="toggle">Hide with Toggle</button>
-          <button class="rs-btn rs-btn-link" rs-popover-trigger popover-id="declarative-demo" popover-action="hide">Hide with Hide</button>
+          <button class="rs-btn rs-btn-link" rs-popover-trigger popover-id="declarative-demo">Hide</button>
         </p>
       </div>
     </rs-popover>
@@ -50,7 +49,7 @@
     <div class="rs-btn-group">
       <button class="rs-btn" rs-popover-trigger popover-id="nested-tier-one">Nested</button>
     </div>
-    <rs-popover id="nested-tier-one">
+    <rs-popover popover-id="nested-tier-one">
       <div class="rs-popover-body">
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea, tempore, odio, dolorum, omnis architecto pariatur dolor blanditiis similique laudantium in nemo veniam porro? Impedit, enim minus molestias tenetur ab possimus!</p>
         <p>
@@ -58,7 +57,7 @@
         </p>
       </div>
     </rs-popover>
-    <rs-popover id="nested-tier-two">
+    <rs-popover popover-id="nested-tier-two">
       <div class="rs-popover-body">
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea, tempore, odio, dolorum, omnis architecto pariatur dolor blanditiis similique laudantium in nemo veniam porro? Impedit, enim minus molestias tenetur ab possimus!</p>
       </div>
