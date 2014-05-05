@@ -29,7 +29,7 @@ gulp.task('docs', function () {
 });
 
 gulp.task('javascript', function () {
-  return gulp.src('src/javascripts/build.js')
+  return gulp.src('src/javascripts/module.js')
     .pipe(browserify({ debug: true, transform: ['partialify'] }))
       .pipe(rename('rs-popover.js'))
       .pipe(gulp.dest('dist'))
