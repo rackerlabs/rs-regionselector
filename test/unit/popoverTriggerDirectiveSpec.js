@@ -21,7 +21,7 @@ describe('popoverTriggerDirective', function () {
   });
 
   describe('link', function () {
-    it('opens popover when element receives default event', function () {
+    it('toggles popover when element receives default event', function () {
       directiveInstance.link(scope, element, attrs);
       element.triggerHandler('click');
 
@@ -29,7 +29,7 @@ describe('popoverTriggerDirective', function () {
       expect(registry.popover).toHaveBeenCalledWith('popover-id');
     });
 
-    it('opens popover when element receives configured event', function () {
+    it('toggles popover when element receives configured event', function () {
       attrs.popoverEvent = 'my-custom-event';
 
       directiveInstance.link(scope, element, attrs);
@@ -39,7 +39,22 @@ describe('popoverTriggerDirective', function () {
       expect(registry.popover).toHaveBeenCalledWith('popover-id');
     });
 
-    it('does not open popover before element is clicked', function () {
+    it('toggles linked popover when element is inside popover directive', function () {
+      var controller;
+
+      controller = {};
+      controller.popoverId = function () {
+        return 'automatic-link';
+      };
+
+      directiveInstance.link(scope, element, attrs, controller);
+      element.triggerHandler('click');
+
+      expect(popover.toggle).toHaveBeenCalled();
+      expect(registry.popover).toHaveBeenCalledWith('automatic-link');
+    });
+
+    it('does not toggles popover before element is clicked', function () {
       directiveInstance.link(scope, element, attrs);
 
       expect(popover.toggle).not.toHaveBeenCalled();
