@@ -3,5 +3,6 @@
 var angular = window.angular;
 
 angular.module('rsPopover', [])
-  .directive('rsPopover', require('./popoverDirective'))
+  .service('registry', require('./popoverRegistry'))
+  .directive('rsPopover', ['registry', require('./popoverDirective')])
   .controller('PopoverController', ['$scope', require('./popoverController')]);
