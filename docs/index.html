@@ -13,13 +13,53 @@
 </head>
 <body>
   <div class="rs-container" style="padding-top: 50px;" ng-controller="DemoController">
+    <h1>Programmatic Control</h1>
     <div class="rs-btn-group">
       <button class="rs-btn" ng-click="show()">Show</button>
     </div>
-    <rs-popover id="mypopoverid" open="open">
+    <rs-popover popover-id="programmatic-demo">
       <div class="rs-popover-body">
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea, tempore, odio, dolorum, omnis architecto pariatur dolor blanditiis similique laudantium in nemo veniam porro? Impedit, enim minus molestias tenetur ab possimus!</p>
         <p><button class="rs-btn rs-btn-link" ng-click="hide()">Hide</button></p>
+      </div>
+    </rs-popover>
+
+    <hr>
+
+    <h1>Declarative Control</h1>
+    <p>
+      <rs-popover-trigger popover-id="declarative-demo">
+        <button class="rs-btn">Show with Element</button>
+      </rs-popover-trigger>
+      <button class="rs-btn" rs-popover-trigger popover-id="declarative-demo">Show with Attribute</button>
+      <button class="rs-btn" rs-popover-trigger popover-id="declarative-demo" popover-event="mouseover">Show on Hover</button>
+    </p>
+    <rs-popover popover-id="declarative-demo">
+      <div class="rs-popover-body">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea, tempore, odio, dolorum, omnis architecto pariatur dolor blanditiis similique laudantium in nemo veniam porro? Impedit, enim minus molestias tenetur ab possimus!</p>
+        <p>
+          <button class="rs-btn rs-btn-link" rs-popover-trigger>Hide</button>
+        </p>
+      </div>
+    </rs-popover>
+
+    <hr>
+
+    <h1>Nested Popovers</h1>
+    <div class="rs-btn-group">
+      <button class="rs-btn" rs-popover-trigger popover-id="nested-tier-one">Nested</button>
+    </div>
+    <rs-popover popover-id="nested-tier-one">
+      <div class="rs-popover-body">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea, tempore, odio, dolorum, omnis architecto pariatur dolor blanditiis similique laudantium in nemo veniam porro? Impedit, enim minus molestias tenetur ab possimus!</p>
+        <p>
+          <button class="rs-btn rs-btn-link" rs-popover-trigger popover-id="nested-tier-two">Popovers</button>
+        </p>
+      </div>
+    </rs-popover>
+    <rs-popover popover-id="nested-tier-two">
+      <div class="rs-popover-body">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea, tempore, odio, dolorum, omnis architecto pariatur dolor blanditiis similique laudantium in nemo veniam porro? Impedit, enim minus molestias tenetur ab possimus!</p>
       </div>
     </rs-popover>
   </div>
@@ -31,10 +71,10 @@
 
   angular.module('rsPopoverDemo', ['rsPopover']).controller('DemoController', function ($scope, registry) {
     $scope.show = function () {
-      registry.popover('mypopoverid').show();
+      registry.popover('programmatic-demo').show();
     };
     $scope.hide = function () {
-      registry.popover('mypopoverid').hide();
+      registry.popover('programmatic-demo').hide();
     };
   });
 

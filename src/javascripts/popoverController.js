@@ -22,4 +22,8 @@ module.exports = function ($scope) {
   $scope.toggle = function () {
     $scope.open = !$scope.open;
   };
+
+  this.popoverId = function () {
+    return $scope.popoverId;
+  };
 };

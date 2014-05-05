@@ -7,10 +7,10 @@ module.exports = function (registry) {
     template: require('../templates/popover.html'),
     controller: 'PopoverController',
     scope: {
-      id: '@'
+      popoverId: '@'
     },
     link: function (scope, element, attrs) {
-      registry.register(attrs.id, scope);
+      registry.register(attrs.popoverId, scope);
     }
   };
 };

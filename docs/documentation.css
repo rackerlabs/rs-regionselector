@@ -1,3 +1,12 @@
 body {
   background: #fff;
 }
+
+hr {
+  margin: 20px 0;
+}
+
+.rs-popover-body {
+  margin: 0;
+  padding: 20px;
+}
