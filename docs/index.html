@@ -32,14 +32,14 @@
         <button class="rs-btn">Show with Element</button>
       </rs-popover-trigger>
       <button class="rs-btn" rs-popover-trigger popover-id="declarative-demo">Show with Attribute</button>
-      <button class="rs-btn" rs-popover-trigger popover-id="declarative-demo">Show on Hover</button>
+      <button class="rs-btn" rs-popover-trigger popover-id="declarative-demo" popover-event="mouseover">Show on Hover</button>
     </p>
     <rs-popover id="declarative-demo">
       <div class="rs-popover-body">
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea, tempore, odio, dolorum, omnis architecto pariatur dolor blanditiis similique laudantium in nemo veniam porro? Impedit, enim minus molestias tenetur ab possimus!</p>
         <p>
-          <button class="rs-btn rs-btn-link" rs-popover-trigger popover-id="declarative-demo">Hide with Toggle</button>
-          <button class="rs-btn rs-btn-link" rs-popover-trigger popover-id="declarative-demo">Hide with Hide</button>
+          <button class="rs-btn rs-btn-link" rs-popover-trigger popover-id="declarative-demo" popover-action="toggle">Hide with Toggle</button>
+          <button class="rs-btn rs-btn-link" rs-popover-trigger popover-id="declarative-demo" popover-action="hide">Hide with Hide</button>
         </p>
       </div>
     </rs-popover>

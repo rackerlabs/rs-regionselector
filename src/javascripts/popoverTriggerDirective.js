@@ -8,8 +8,10 @@ module.exports = function (registry) {
       popoverEvent: '@'
     },
     link: function (scope, element, attrs) {
-      element.on('click', function () {
-        registry.popover(attrs.popoverId).show();
+      var eventType = attrs.popoverEvent || 'click';
+
+      element.on(eventType, function () {
+        registry.popover(attrs.popoverId).toggle();
         scope.$apply();
       });
     }
