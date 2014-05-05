@@ -18,7 +18,8 @@
     </div>
     <rs-popover id="mypopoverid" open="open">
       <div class="rs-popover-body">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea, tempore, odio, dolorum, omnis architecto pariatur dolor blanditiis similique laudantium in nemo veniam porro? Impedit, enim minus molestias tenetur ab possimus!
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea, tempore, odio, dolorum, omnis architecto pariatur dolor blanditiis similique laudantium in nemo veniam porro? Impedit, enim minus molestias tenetur ab possimus!</p>
+        <p><button class="rs-btn rs-btn-link" ng-click="hide()">Hide</button></p>
       </div>
     </rs-popover>
   </div>
@@ -28,13 +29,12 @@
 
   <script type="application/javascript">
 
-  angular.module('rsPopoverDemo', ['rsPopover']).controller('DemoController', function ($scope) {
-    $scope.open = true;
+  angular.module('rsPopoverDemo', ['rsPopover']).controller('DemoController', function ($scope, registry) {
     $scope.show = function () {
-      console.log('show');
+      registry.popover('mypopoverid').show();
     };
     $scope.hide = function () {
-      console.log('hide');
+      registry.popover('mypopoverid').hide();
     };
   });
 

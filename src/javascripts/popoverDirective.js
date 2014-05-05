@@ -1,4 +1,4 @@
-module.exports = function () {
+module.exports = function (registry) {
   'use strict';
 
   return {
@@ -8,6 +8,9 @@ module.exports = function () {
     controller: 'PopoverController',
     scope: {
       id: '@'
+    },
+    link: function (scope, element, attrs) {
+      registry.register(attrs.id, scope);
     }
   };
 };

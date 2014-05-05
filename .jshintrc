@@ -20,6 +20,7 @@
       "module": true,
       "inject": true,
 
+      "jasmine": true,
       "describe": true,
       "it": true,
       "expect": true,
