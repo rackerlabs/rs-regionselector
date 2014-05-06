@@ -42,6 +42,7 @@ describe('popoverTriggerDirective', function () {
     it('toggles linked popover when element is inside popover directive', function () {
       var controller;
 
+      attrs.popoverId = null;
       controller = {};
       controller.popoverId = function () {
         return 'automatic-link';

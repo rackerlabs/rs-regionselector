@@ -11,7 +11,12 @@ module.exports = function (registry) {
     link: function (scope, element, attrs, popoverController) {
       var popoverId, eventType;
 
-      popoverId = popoverController ? popoverController.popoverId() : attrs.popoverId;
+      if (attrs.popoverId) {
+        popoverId = attrs.popoverId;
+      } else if (popoverController) {
+        popoverId = popoverController.popoverId();
+      }
+
       eventType = attrs.popoverEvent || 'click';
 
       element.on(eventType, function () {
