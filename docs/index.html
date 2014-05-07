@@ -28,10 +28,7 @@
 
     <h1>Declarative Control</h1>
     <p>
-      <rs-popover-trigger popover-id="declarative-demo">
-        <button class="rs-btn">Show with Element</button>
-      </rs-popover-trigger>
-      <button class="rs-btn" rs-popover-trigger popover-id="declarative-demo">Show with Attribute</button>
+      <button class="rs-btn" rs-popover-trigger="declarative-demo">Show</button>
     </p>
     <rs-popover popover-id="declarative-demo">
       <div class="rs-popover-body">
@@ -46,13 +43,13 @@
 
     <h1>Nested Popovers</h1>
     <div class="rs-btn-group">
-      <button class="rs-btn" rs-popover-trigger popover-id="nested-tier-one">Nested</button>
+      <button class="rs-btn" rs-popover-trigger="nested-tier-one">Nested</button>
     </div>
     <rs-popover popover-id="nested-tier-one">
       <div class="rs-popover-body">
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea, tempore, odio, dolorum, omnis architecto pariatur dolor blanditiis similique laudantium in nemo veniam porro? Impedit, enim minus molestias tenetur ab possimus!</p>
         <p>
-          <button class="rs-btn rs-btn-link" rs-popover-trigger popover-id="nested-tier-two">Popovers</button>
+          <button class="rs-btn rs-btn-link" rs-popover-trigger="nested-tier-two">Popovers</button>
         </p>
       </div>
     </rs-popover>

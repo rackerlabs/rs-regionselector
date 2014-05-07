@@ -17,7 +17,7 @@ describe('popoverTriggerDirective', function () {
     scope = {};
     scope.$apply = function () {};
     element = angular.element('<div></div>');
-    attrs = { popoverId: 'popover-id' };
+    attrs = { rsPopoverTrigger: 'popover-id' };
   });
 
   describe('link', function () {
@@ -32,7 +32,7 @@ describe('popoverTriggerDirective', function () {
     it('toggles linked popover when element is inside popover directive', function () {
       var controller;
 
-      attrs.popoverId = null;
+      attrs.rsPopoverTrigger = null;
       controller = {};
       controller.popoverId = function () {
         return 'automatic-link';
