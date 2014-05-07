@@ -21,19 +21,9 @@ describe('popoverTriggerDirective', function () {
   });
 
   describe('link', function () {
-    it('toggles popover when element receives default event', function () {
+    it('toggles popover when element receives click event', function () {
       directiveInstance.link(scope, element, attrs);
       element.triggerHandler('click');
-
-      expect(popover.toggle).toHaveBeenCalled();
-      expect(registry.popover).toHaveBeenCalledWith('popover-id');
-    });
-
-    it('toggles popover when element receives configured event', function () {
-      attrs.popoverEvent = 'my-custom-event';
-
-      directiveInstance.link(scope, element, attrs);
-      element.triggerHandler('my-custom-event');
 
       expect(popover.toggle).toHaveBeenCalled();
       expect(registry.popover).toHaveBeenCalledWith('popover-id');

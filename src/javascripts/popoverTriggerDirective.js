@@ -5,11 +5,10 @@ module.exports = function (registry) {
     restrict: 'EA',
     require: '?^rsPopover',
     scope: {
-      popoverId: '@',
-      popoverEvent: '@'
+      popoverId: '@'
     },
     link: function (scope, element, attrs, popoverController) {
-      var popoverId, eventType;
+      var popoverId;
 
       if (attrs.popoverId) {
         popoverId = attrs.popoverId;
@@ -17,9 +16,7 @@ module.exports = function (registry) {
         popoverId = popoverController.popoverId();
       }
 
-      eventType = attrs.popoverEvent || 'click';
-
-      element.on(eventType, function () {
+      element.on('click', function () {
         registry.popover(popoverId).toggle();
         scope.$apply();
       });
