@@ -25,14 +25,14 @@ describe('popoverTriggerDirective', function () {
       directiveInstance.link(scope, element, attrs);
       element.triggerHandler('click');
 
-      expect(popover.toggle).toHaveBeenCalled();
+      expect(popover.toggle).toHaveBeenCalledWith(element);
       expect(registry.popover).toHaveBeenCalledWith('popover-id');
     });
 
     it('toggles linked popover when element is inside popover directive', function () {
       var controller;
 
-      attrs.rsPopoverTrigger = null;
+      attrs.rsPopoverTrigger = '';
       controller = {};
       controller.popoverId = function () {
         return 'automatic-link';
@@ -41,14 +41,14 @@ describe('popoverTriggerDirective', function () {
       directiveInstance.link(scope, element, attrs, controller);
       element.triggerHandler('click');
 
-      expect(popover.toggle).toHaveBeenCalled();
+      expect(popover.toggle).toHaveBeenCalledWith(element);
       expect(registry.popover).toHaveBeenCalledWith('automatic-link');
     });
 
     it('does not toggles popover before element is clicked', function () {
       directiveInstance.link(scope, element, attrs);
 
-      expect(popover.toggle).not.toHaveBeenCalled();
+      expect(popover.toggle).not.toHaveBeenCalledWith(element);
       expect(registry.popover).not.toHaveBeenCalledWith('popover-id');
     });
   });

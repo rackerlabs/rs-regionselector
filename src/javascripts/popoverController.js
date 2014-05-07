@@ -11,18 +11,6 @@ module.exports = function ($scope) {
     opacity: 0
   };
 
-  $scope.show = function () {
-    $scope.open = true;
-  };
-
-  $scope.hide = function () {
-    $scope.open = false;
-  };
-
-  $scope.toggle = function () {
-    $scope.open = !$scope.open;
-  };
-
   this.popoverId = function () {
     return $scope.popoverId;
   };
