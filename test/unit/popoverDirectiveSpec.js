@@ -3,7 +3,7 @@ var directive = require('../../src/javascripts/popoverDirective');
 describe('popoverDirective', function () {
   'use strict';
 
-  var scope, attrs, element, target, registry, attachmentService, directiveInstance;
+  var scope, attrs, element, target, registry, tether, directiveInstance;
 
   beforeEach(function () {
     scope = { $apply: jasmine.createSpy('apply') };
@@ -14,10 +14,11 @@ describe('popoverDirective', function () {
     registry = {};
     registry.register = jasmine.createSpy('register');
 
-    attachmentService = {};
-    attachmentService.attach = jasmine.createSpy('attach');
+    tether = {};
+    tether.attach = jasmine.createSpy('attach');
+    tether.detach = jasmine.createSpy('detach');
 
-    directiveInstance = directive(registry, attachmentService);
+    directiveInstance = directive(registry, tether);
     directiveInstance.link(scope, element, attrs);
   });
 
@@ -35,11 +36,11 @@ describe('popoverDirective', function () {
       expect(scope.open).toBe(true);
     });
 
-    it('repositions popover', function () {
+    it('attaches popover to trigger', function () {
       scope.open = false;
       scope.show(target);
 
-      expect(attachmentService.attach).toHaveBeenCalledWith(target, element);
+      expect(tether.attach).toHaveBeenCalledWith(target, element);
     });
   });
 
@@ -50,6 +51,13 @@ describe('popoverDirective', function () {
 
       expect(scope.open).toBe(false);
     });
+
+    it('detaches popover from trigger', function () {
+      scope.open = true;
+      scope.hide();
+
+      expect(tether.detach).toHaveBeenCalledWith(element);
+    });
   });
 
   describe('toggle', function () {
@@ -57,7 +65,7 @@ describe('popoverDirective', function () {
       scope.open = false;
       scope.toggle(target);
 
-      expect(attachmentService.attach).toHaveBeenCalledWith(target, element);
+      expect(tether.attach).toHaveBeenCalledWith(target, element);
     });
 
     it('sets open to true when initially false', function () {
