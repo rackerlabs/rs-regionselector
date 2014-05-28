@@ -1,7 +1,10 @@
 <div class="rs-popover-wrapper" ng-hide="!open">
-  <div class="rs-popover-overlay" ng-click="hide()" ng-style="{{ overlay }}"></div>
+  <div class="rs-popover-overlay" ng-click="controller.hide()" ng-style="{{ overlay }}"></div>
   <div class="rs-popover">
     <div class="rs-popover-arrow rs-popover-arrow-top-left"></div>
-    <div class="rs-popover-content" ng-transclude></div>
+    <div class="rs-popover-content">
+      <div class="rs-popover-loading" ng-hide="!loading">Loading</div>
+      <div ng-hide="loading" ng-transclude></div>
+    </div>
   </div>
 </div>

@@ -5,7 +5,7 @@ var Tether = require('../../src/javascripts/tether');
 describe('popoverController', function () {
   'use strict';
 
-  var scope, registry, tether, target, controller;
+  var scope, element, registry, tether, target, controller;
 
   beforeEach(function () {
     scope = { popoverId: 'popover-id', popoverElement: jasmine.createSpy('element') };
@@ -23,6 +23,10 @@ describe('popoverController', function () {
     expect(scope.open).toBe(false);
   });
 
+  it('sets loading to false', function () {
+    expect(scope.loading).toBe(false);
+  });
+
   it('stretches overlay to fill screen', function () {
     expect(scope.overlay).toEqual({ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, opacity: 0 });
   });
@@ -32,11 +36,16 @@ describe('popoverController', function () {
   });
 
   describe('show', function () {
-    beforeEach(function () {
+    var loadingDeferred;
+
+    beforeEach(inject(function ($q) {
       spyOn(tether, 'attach');
 
       scope.open = false;
-    });
+      scope.loading = false;
+
+      loadingDeferred = $q.defer();
+    }));
 
     it('sets open to true', function () {
       controller.show(target);
@@ -49,6 +58,40 @@ describe('popoverController', function () {
 
       expect(tether.attach).toHaveBeenCalledWith(scope.popoverElement, target);
     });
+
+    it('sets loading to false if onOpen hook is not provided', function () {
+      controller.show(target);
+
+      expect(scope.loading).toBe(false);
+    });
+
+    it('sets loading to true if onOpen hook is provided', inject(function ($q) {
+      scope.onOpen = jasmine.createSpy('onOpen').andReturn(loadingDeferred.promise);
+
+      controller.show(target);
+
+      expect(scope.loading).toBe(true);
+    }));
+
+    it('sets loading to false when hook finished', inject(function ($q, $rootScope) {
+      scope.onOpen = jasmine.createSpy('onOpen').andReturn(loadingDeferred.promise);
+
+      controller.show(target);
+      loadingDeferred.resolve();
+      $rootScope.$apply();
+
+      expect(scope.loading).toBe(false);
+    }));
+
+    it('sets loading to false when hook fails', inject(function ($q, $rootScope) {
+      scope.onOpen = jasmine.createSpy('onOpen').andReturn(loadingDeferred.promise);
+
+      controller.show(target);
+      loadingDeferred.reject('something failed');
+      $rootScope.$apply();
+
+      expect(scope.loading).toBe(false);
+    }));
   });
 
   describe('hide', function () {
@@ -56,12 +99,19 @@ describe('popoverController', function () {
       spyOn(tether, 'detach');
 
       scope.open = true;
+      scope.loading = true;
     });
 
     it('sets open to false', function () {
       controller.hide();
 
       expect(scope.open).toBe(false);
+    });
+
+    it('sets loading to false', function () {
+      controller.hide();
+
+      expect(scope.loading).toBe(false);
     });
 
     it('detaches popover from target', function () {
