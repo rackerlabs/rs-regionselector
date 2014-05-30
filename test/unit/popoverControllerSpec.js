@@ -27,6 +27,14 @@ describe('popoverController', function () {
     expect(scope.loading).toBe(false);
   });
 
+  it('sets error to false', function () {
+    expect(scope.error).toBe(false);
+  });
+
+  it('sets errorMessage to null', function () {
+    expect(scope.errorMessage).toBe(null);
+  });
+
   it('stretches overlay to fill screen', function () {
     expect(scope.overlay).toEqual({ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, opacity: 0 });
   });
@@ -73,7 +81,7 @@ describe('popoverController', function () {
       expect(scope.loading).toBe(true);
     }));
 
-    it('sets loading to false when hook finished', inject(function ($q, $rootScope) {
+    it('sets loading to false when hook succeeds', inject(function ($q, $rootScope) {
       scope.onOpen = jasmine.createSpy('onOpen').andReturn(loadingDeferred.promise);
 
       controller.show(target);
@@ -92,6 +100,36 @@ describe('popoverController', function () {
 
       expect(scope.loading).toBe(false);
     }));
+
+    it('sets error to false when hook succeeds', inject(function ($q, $rootScope) {
+      scope.onOpen = jasmine.createSpy('onOpen').andReturn(loadingDeferred.promise);
+
+      controller.show(target);
+      loadingDeferred.resolve();
+      $rootScope.$apply();
+
+      expect(scope.error).toBe(false);
+    }));
+
+    it('sets error to true when hook fails', inject(function ($q, $rootScope) {
+      scope.onOpen = jasmine.createSpy('onOpen').andReturn(loadingDeferred.promise);
+
+      controller.show(target);
+      loadingDeferred.reject('something failed');
+      $rootScope.$apply();
+
+      expect(scope.error).toBe(true);
+    }));
+
+    it('sets errorMessage to promise result', inject(function ($q, $rootScope) {
+      scope.onOpen = jasmine.createSpy('onOpen').andReturn(loadingDeferred.promise);
+
+      controller.show(target);
+      loadingDeferred.reject('something failed');
+      $rootScope.$apply();
+
+      expect(scope.errorMessage).toBe('something failed');
+    }));
   });
 
   describe('hide', function () {
@@ -100,6 +138,7 @@ describe('popoverController', function () {
 
       scope.open = true;
       scope.loading = true;
+      scope.error = true;
     });
 
     it('sets open to false', function () {
@@ -112,6 +151,12 @@ describe('popoverController', function () {
       controller.hide();
 
       expect(scope.loading).toBe(false);
+    });
+
+    it('sets error to false', function () {
+      controller.hide();
+
+      expect(scope.error).toBe(false);
     });
 
     it('detaches popover from target', function () {

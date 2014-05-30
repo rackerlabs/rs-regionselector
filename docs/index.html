@@ -76,7 +76,9 @@
     };
 
     $scope.loadContent = function () {
-      return $timeout(function () {}, 5000);
+      return $timeout(function () {
+        throw 'Everything is broken!';
+      }, 5000);
     };
   });
 

@@ -4,6 +4,8 @@ function PopoverController($scope, registry, tether) {
   this.scope = $scope;
   this.scope.open = false;
   this.scope.loading = false;
+  this.scope.error = false;
+  this.scope.errorMessage = null;
   this.scope.overlay = { position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, opacity: 0 };
   this.tether = tether;
 
@@ -25,15 +27,26 @@ PopoverController.prototype.show = function (target) {
 
   this.scope.open = true;
   this.tether.attach(this.scope.popoverElement, target);
-
-  if (this.scope.onOpen) {
-    this.waitForLoad();
-  }
+  this.waitForLoad();
 };
 
 PopoverController.prototype.waitForLoad = function () {
+  'use strict';
+
+  var loading;
+
+  if (!this.scope.onOpen) {
+    return;
+  }
+
   this.scope.loading = true;
-  this.scope.onOpen().finally(angular.bind(this, function () {
+
+  loading = this.scope.onOpen();
+  loading.catch(angular.bind(this, function (error) {
+    this.scope.error = true;
+    this.scope.errorMessage = error;
+  }));
+  loading.finally(angular.bind(this, function () {
     this.scope.loading = false;
   }));
 };
@@ -43,6 +56,7 @@ PopoverController.prototype.hide = function () {
 
   this.scope.open = false;
   this.scope.loading = false;
+  this.scope.error = false;
   this.tether.detach(this.scope.popoverElement);
 };
 
