@@ -8,7 +8,7 @@ module.exports = function (registry) {
       var popoverId;
 
       if (attrs.rsPopoverTrigger === '') {
-        popoverId = popoverController.popoverId();
+        popoverId = popoverController.getPopoverId();
       } else {
         popoverId = attrs.rsPopoverTrigger;
       }

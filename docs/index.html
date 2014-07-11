@@ -30,7 +30,7 @@
     <p>
       <button class="rs-btn" rs-popover-trigger="declarative-demo">Show</button>
     </p>
-    <rs-popover popover-id="declarative-demo">
+    <rs-popover popover-id="declarative-demo" on-open="loadContent">
       <div class="rs-popover-body">
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea, tempore, odio, dolorum, omnis architecto pariatur dolor blanditiis similique laudantium in nemo veniam porro? Impedit, enim minus molestias tenetur ab possimus!</p>
         <p>
@@ -66,12 +66,19 @@
 
   <script type="application/javascript">
 
-  angular.module('rsPopoverDemo', ['rsPopover']).controller('DemoController', function ($scope, registry) {
+  angular.module('rsPopoverDemo', ['rsPopover']).controller('DemoController', function ($scope, $timeout, registry) {
     $scope.show = function (e) {
       registry.popover('programmatic-demo').show(angular.element(e.target));
     };
+
     $scope.hide = function () {
       registry.popover('programmatic-demo').hide();
+    };
+
+    $scope.loadContent = function () {
+      return $timeout(function () {
+        throw 'Everything is broken!';
+      }, 5000);
     };
   });
 

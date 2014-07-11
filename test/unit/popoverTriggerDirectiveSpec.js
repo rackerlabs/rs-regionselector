@@ -34,7 +34,7 @@ describe('popoverTriggerDirective', function () {
 
       attrs.rsPopoverTrigger = '';
       controller = {};
-      controller.popoverId = function () {
+      controller.getPopoverId = function () {
         return 'automatic-link';
       };
 

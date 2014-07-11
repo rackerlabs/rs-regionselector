@@ -1,4 +1,4 @@
-module.exports = function (registry, tether) {
+module.exports = function () {
   'use strict';
 
   return {
@@ -6,29 +6,13 @@ module.exports = function (registry, tether) {
     transclude: true,
     template: require('../templates/popover.html'),
     controller: 'PopoverController',
+    controllerAs: 'controller',
     scope: {
-      popoverId: '@'
+      popoverId: '@',
+      onOpen: '='
     },
-    link: function (scope, element, attrs) {
-      scope.toggle = function (target) {
-        if (scope.open) {
-          scope.hide();
-        } else {
-          scope.show(target);
-        }
-      };
-
-      scope.show = function (target) {
-        scope.open = true;
-        tether.attach(target, element);
-      };
-
-      scope.hide = function () {
-        scope.open = false;
-        tether.detach(element);
-      };
-
-      registry.register(attrs.popoverId, scope);
+    link: function (scope, element) {
+      scope.popoverElement = element;
     }
   };
 };
