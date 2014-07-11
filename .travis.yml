@@ -1,6 +1,14 @@
 language: node_js
 node_js:
 - '0.10'
+- '0.11'
 before_script:
-- npm install -g bower gulp karma
-- bower install
+- node_modules/.bin/bower install
+after_script:
+- node_modules/.bin/codeclimate < "$(find coverage -name lcov.info)"
+notifications:
+  email: false
+  irc: chat.freenode.net#canon-dev
+env:
+  global:
+    secure: mq6lrtfNW/GdSARzQW5QsC6jl4MDyxkMKgiy8D6wnWTPpyK9QXb1EVJ4VO+ybmIw0lrUhFfB833pg/+s6ePB3nAzsA/GO6ibpReoksMZzq9IXqGogzKhJu5Z/L96fKopcbKUICXSSsx+L4V5Oj0Z/ukwUysbq4xp9h3+AS4Lzho=
