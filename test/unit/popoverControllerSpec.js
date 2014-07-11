@@ -61,10 +61,26 @@ describe('popoverController', function () {
       expect(scope.open).toBe(true);
     });
 
+    it('sets loading to false', function () {
+      scope.loading = true;
+
+      controller.show(target);
+
+      expect(scope.loading).toBe(false);
+    });
+
+    it('sets error to false', function () {
+      scope.error = true;
+
+      controller.show(target);
+
+      expect(scope.error).toBe(false);
+    });
+
     it('attaches popover to target', function () {
       controller.show(target);
 
-      expect(tether.attach).toHaveBeenCalledWith(scope.popoverElement, target);
+      expect(tether.attach).toHaveBeenCalledWith(target, scope.popoverElement);
     });
 
     it('sets loading to false if onOpen hook is not provided', function () {

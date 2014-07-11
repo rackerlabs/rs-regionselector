@@ -26,7 +26,10 @@ PopoverController.prototype.show = function (target) {
   'use strict';
 
   this.scope.open = true;
-  this.tether.attach(this.scope.popoverElement, target);
+  this.scope.loading = false;
+  this.scope.error = false;
+
+  this.tether.attach(target, this.scope.popoverElement);
   this.waitForLoad();
 };
 
