@@ -20,12 +20,14 @@
   "strict": true,
   "browser": true,
   "globals": {
+    "angular": true,
     "module": true,
     "inject": true,
-    "angular": true,
+    "jasmine": true,
     "describe": true,
     "beforeEach": true,
     "it": true,
-    "expect": true
+    "expect": true,
+    "spyOn": true
   }
 }
