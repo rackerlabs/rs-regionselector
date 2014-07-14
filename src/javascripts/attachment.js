@@ -15,7 +15,6 @@ angular.module('rs.popover').factory('Attachment', function () {
     position.left += this.target.outerWidth() / 2 + HORIZONTAL_OFFSET;
 
     popoverElement = $('.rs-popover', this.element).first();
-    // popoverElement = this.element.find('.rs-popover').first();
     popoverElement.css({ top: position.top, left: position.left });
   };
 
