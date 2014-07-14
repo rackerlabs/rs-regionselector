@@ -1,19 +1,19 @@
-describe('rs.popover.PopoverState', function () {
+describe('rs.popover.Popover', function () {
   'use strict';
 
-  var q, scope, PopoverState, fsm;
+  var q, scope, Popover, fsm;
 
   beforeEach(module('rs.popover'));
 
-  beforeEach(inject(function (_PopoverState_, $q, $rootScope) {
+  beforeEach(inject(function (_Popover_, $q, $rootScope) {
     q = $q;
     scope = $rootScope;
-    PopoverState = _PopoverState_;
+    Popover = _Popover_;
   }));
 
   it('is initially closed', function () {
-    fsm = new PopoverState();
-    expect(fsm.state).toBe('closed');
+    fsm = new Popover();
+    expect(fsm.is('closed')).toBe(true);
   });
 
   describe('open', function () {
@@ -22,13 +22,13 @@ describe('rs.popover.PopoverState', function () {
     beforeEach(function () {
       onOpenDeferred = q.defer();
       onOpen = jasmine.createSpy('onOpen').andReturn(onOpenDeferred.promise);
-      fsm = new PopoverState(onOpen);
+      fsm = new Popover(onOpen);
     });
 
     it('transitions state to loading', function () {
       fsm.open();
 
-      expect(fsm.state).toBe('loading');
+      expect(fsm.is('loading')).toBe(true);
     });
 
     it('executes onOpen callback', function () {
@@ -60,25 +60,25 @@ describe('rs.popover.PopoverState', function () {
 
   describe('load', function () {
     beforeEach(function () {
-      fsm = new PopoverState();
+      fsm = new Popover();
     });
 
     it('transitions state to open', function () {
       fsm.load();
 
-      expect(fsm.state).toBe('open');
+      expect(fsm.is('open')).toBe(true);
     });
   });
 
   describe('error', function () {
     beforeEach(function () {
-      fsm = new PopoverState();
+      fsm = new Popover();
     });
 
     it('transitions state to error', function () {
       fsm.error('everything is broken');
 
-      expect(fsm.state).toBe('error');
+      expect(fsm.is('error')).toBe(true);
     });
 
     it('sets message to provided argument', function () {
