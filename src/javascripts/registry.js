@@ -15,9 +15,9 @@ angular.module('rs.popover').factory('registry', function () {
     this.popovers[id] = controller;
   };
 
-  Registry.prototype.toggle = function (id) {
+  Registry.prototype.popover = function (id) {
     if (id in this.popovers) {
-      return this.popovers[id].toggle();
+      return this.popovers[id];
     }
 
     throw 'Popover ID "' + id + '" has not been registered!';

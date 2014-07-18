@@ -8,8 +8,11 @@ angular.module('rs.popover').factory('tether', function ($window, Attachment) {
   Tether.prototype.attach = function (element, target) {
     var attachment;
 
-    attachment = new Attachment();
+    attachment = new Attachment(element, target);
+    attachment.position();
+
     this.attachments.push(attachment);
+
     return attachment;
   };
 

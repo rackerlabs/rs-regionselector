@@ -23,22 +23,19 @@ describe('rs.popover.Registry', function () {
     });
   });
 
-  describe('toggle', function () {
-    it('toggles registered popover', function () {
+  describe('popover', function () {
+    it('returns registered popover', function () {
       var controller;
 
       controller = {};
-      controller.toggle = jasmine.createSpy('toggle');
-
       registry.register('mypopover', controller);
-      registry.toggle('mypopover');
 
-      expect(controller.toggle).toHaveBeenCalledWith();
+      expect(registry.popover('mypopover')).toBe(controller);
     });
 
     it('raises exception for unregistered popover', function () {
       expect(function () {
-        registry.toggle('unregistered');
+        registry.popover('unregistered');
       }).toThrow('Popover ID "unregistered" has not been registered!');
     });
   });

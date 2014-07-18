@@ -31,6 +31,12 @@ describe('rs.popover.Popover', function () {
       expect(fsm.is('loading')).toBe(true);
     });
 
+    it('sets message to loading', function () {
+      fsm.open();
+
+      expect(fsm.message).toBe('Loading…');
+    });
+
     it('executes onOpen callback', function () {
       fsm.open();
 

@@ -18,9 +18,11 @@ angular.module('rs.popover').factory('Popover', function ($q) {
 
   Popover.prototype.open = function () {
     this.state = Popover.LOADING;
+    this.message = 'Loading…';
+
     this.onOpen.call(this)
-      .then(this.load)
-      .catch(this.error);
+      .then(angular.bind(this, this.load))
+      .catch(angular.bind(this, this.error));
   };
 
   Popover.prototype.load = function () {

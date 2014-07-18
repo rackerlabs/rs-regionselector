@@ -1,73 +1,82 @@
 describe('rs.popover.PopoverController', function () {
   'use strict';
 
-  var scope, registry, target, controller;
+  var scope, element, registry, tether, target, controller;
 
   beforeEach(module('rs.popover'));
 
-  beforeEach(inject(function ($controller, _registry_) {
-    scope = {};
+  beforeEach(inject(function ($rootScope, $controller, _registry_, _tether_) {
+    scope = $rootScope.$new();
     scope.id = 'mypopover';
+    element = angular.element('<div></div>');
 
     registry = _registry_;
     spyOn(registry, 'register');
 
+    tether = _tether_;
+    spyOn(tether, 'attach');
+
     target = angular.element();
-    controller = $controller('PopoverController', { $scope: scope });
+    controller = $controller('PopoverController', {
+      $scope: scope,
+      $element: element
+    });
   }));
 
   it('registers popover', function () {
-    expect(registry.register).toHaveBeenCalledWith('mypopover', scope);
+    expect(registry.register).toHaveBeenCalledWith('mypopover', controller);
   });
 
   describe('show', function () {
     it('transitions popover in loading state', function () {
-      scope.show(target);
+      controller.show(target);
 
-      expect(scope.is('loading')).toBe(true);
+      expect(controller.is('loading')).toBe(true);
     });
 
     it('tethers element to target', function () {
+      controller.show(target);
 
+      expect(tether.attach).toHaveBeenCalledWith(element, target);
     });
   });
 
   describe('hide', function () {
     it('transitions popover to closed state', function () {
-      scope.show(target);
-      scope.hide();
+      controller.show(target);
+      controller.hide();
 
-      expect(scope.is('closed')).toBe(true);
+      expect(controller.is('closed')).toBe(true);
     });
   });
 
   describe('toggle', function () {
     beforeEach(function () {
-      spyOn(scope, 'show');
-      spyOn(scope, 'hide');
+      spyOn(controller, 'show');
+      spyOn(controller, 'hide');
 
-      scope.state = {};
-      scope.state.is = jasmine.createSpy('is');
+      controller.state = {};
+      controller.state.is = jasmine.createSpy('is');
     });
 
     it('shows popover when it is closed', function () {
-      scope.state.is.andCallFake(function (state) {
+      controller.state.is.andCallFake(function (state) {
         return state === 'closed';
       });
 
-      scope.toggle(target);
+      controller.toggle(target);
 
-      expect(scope.show).toHaveBeenCalledWith(target);
+      expect(controller.show).toHaveBeenCalledWith(target);
     });
 
     it('hides popover when it is not closed', function () {
-      scope.state.is.andCallFake(function (state) {
+      controller.state.is.andCallFake(function (state) {
         return state !== 'closed';
       });
 
-      scope.toggle(target);
+      controller.toggle(target);
 
-      expect(scope.hide).toHaveBeenCalledWith();
+      expect(controller.hide).toHaveBeenCalledWith();
     });
   });
 });

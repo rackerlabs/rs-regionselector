@@ -7,6 +7,8 @@ describe('rs.popover.tether', function () {
     $window = angular.element(_$window_);
     tether = _tether_;
 
+    element = angular.element('<div></div>');
+    target = angular.element('<div></div>');
     attachment = tether.attach(element, target);
     spyOn(attachment, 'position');
   }));

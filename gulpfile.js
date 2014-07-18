@@ -15,12 +15,20 @@ var karmaConfig = {
   browsers: ['PhantomJS'],
   frameworks: ['jasmine'],
   reporters: ['dots'],
+  preprocessors: {
+    '**/*.html': ['html2js']
+  },
+  ngHtml2JsPreprocessor: {
+    moduleName: 'rs.popover',
+    stripPrefix: 'src/templates/'
+  },
   files: [
+    'bower_components/jquery/dist/jquery.js',
     'bower_components/angular/angular.js',
     'bower_components/angular-mocks/angular-mocks.js',
-    'bower_components/jquery/dist/jquery.js',
     'src/javascripts/module.js',
     'src/javascripts/**/*.js',
+    'src/templates/**/*.html',
     'test/**/*.js'
   ]
 };
@@ -76,7 +84,7 @@ gulp.task('test', function (done) {
   karmaConfig.singleRun = true;
   karmaConfig.reporters.push('coverage');
   karmaConfig.coverageReporter = { type: 'lcovonly', dir: 'coverage' };
-  karmaConfig.preprocessors = { 'src/javascripts/**/*.js': ['coverage'] };
+  karmaConfig.preprocessors['src/javascripts/**/*.js'] = ['coverage'];
 
   karma.server.start(karmaConfig, done);
 });
@@ -90,7 +98,7 @@ gulp.task('test:watch', function (done) {
 gulp.task('server', ['build:concat', 'build:min'], function () {
   'use strict';
 
-  gulp.watch(['src/**/*.js'], ['build:concat', 'build:min']);
+  gulp.watch(['src/**/*'], ['build:concat', 'build:min']);
 
   return gulp.src(['bower_components', 'docs', 'dist'])
     .pipe(webserver({ livereload: true }));

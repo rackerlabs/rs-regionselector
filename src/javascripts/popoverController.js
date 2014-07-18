@@ -1,26 +1,32 @@
-angular.module('rs.popover').controller('PopoverController', function ($scope, registry, Popover) {
+angular.module('rs.popover').controller('PopoverController', function ($scope, $element, registry, tether, Popover) {
   'use strict';
 
-  $scope.state = new Popover();
-  registry.register($scope.id, $scope);
+  registry.register($scope.id, this);
 
-  $scope.is = function (state) {
-    return $scope.state.is(state);
+  this.state = new Popover($scope.onOpen);
+
+  this.id = function () {
+    return $scope.id;
   };
 
-  $scope.show = function () {
-    $scope.state.open();
+  this.is = function (state) {
+    return this.state.is(state);
   };
 
-  $scope.hide = function () {
-    $scope.state = new Popover();
+  this.show = function (target) {
+    this.state.open();
+    tether.attach($element, target);
   };
 
-  $scope.toggle = function (target) {
-    if ($scope.is('closed')) {
-      $scope.show(target);
+  this.hide = function () {
+    this.state = new Popover($scope.onOpen);
+  };
+
+  this.toggle = function (target) {
+    if (this.state.is('closed')) {
+      this.show(target);
     } else {
-      $scope.hide();
+      this.hide();
     }
   };
 });
