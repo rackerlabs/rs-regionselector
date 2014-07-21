@@ -1,6 +1,4 @@
-# Installed Packages
 bower_components/
-node_modules/
-
-# Build Output
+coverage/
 dist/
+node_modules/

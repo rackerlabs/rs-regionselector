@@ -1,10 +1,15 @@
-/* global window */
+angular.module('rs.popover', []).run(function () {
+  'use strict';
 
-var angular = window.angular;
+  var styleContent, styleTag;
 
-angular.module('rsPopover', [])
-  .service('tether', ['$window', require('./tether')])
-  .service('registry', require('./registry'))
-  .controller('PopoverController', ['$scope', 'registry', 'tether', require('./popoverController')])
-  .directive('rsPopover', ['registry', 'tether', require('./popoverDirective')])
-  .directive('rsPopoverTrigger', ['registry', require('./popoverTriggerDirective')]);
+  styleContent = document.createTextNode('.rs-popover-overlay { position: absolute; top: 0; left: 0; right: 0; bottom: 0; opacity: 0 } \
+    .rs-popover-loading, .rs-popover-error { width: 200px; height: 140px } \
+    .rs-popover-error { color: #c40022 } \
+    .rs-popover-message { width: 100%; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;');
+  styleTag = document.createElement('style');
+  styleTag.type = 'text/css';
+  styleTag.appendChild(styleContent);
+
+  document.head.appendChild(styleTag);
+});

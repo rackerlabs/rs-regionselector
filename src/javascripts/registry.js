@@ -1,29 +1,27 @@
-function Registry() {
+angular.module('rs.popover').factory('registry', function () {
   'use strict';
 
-  this.popovers = [];
-}
-
-Registry.prototype.register = function (id, scope) {
-  'use strict';
-
-  if (!id) {
-    throw 'Popover ID must not be empty!';
-  } else if (this.popovers.hasOwnProperty(id)) {
-    throw 'Popover with id "' + id + '" has already been registered!';
+  function Registry() {
+    this.popovers = {};
   }
 
-  this.popovers[id] = scope;
-};
+  Registry.prototype.register = function (id, controller) {
+    if (!id) {
+      throw 'Popover ID must not be empty!';
+    } else if (id in this.popovers) {
+      throw 'Popover ID "' + id + '" has already been registered!';
+    }
 
-Registry.prototype.popover = function (id) {
-  'use strict';
+    this.popovers[id] = controller;
+  };
 
-  if (!this.popovers.hasOwnProperty(id)) {
-    throw 'Popover with id "' + id + '" has not been registered!';
-  }
+  Registry.prototype.popover = function (id) {
+    if (id in this.popovers) {
+      return this.popovers[id];
+    }
 
-  return this.popovers[id];
-};
+    throw 'Popover ID "' + id + '" has not been registered!';
+  };
 
-module.exports = Registry;
+  return new Registry();
+});

@@ -1,24 +1,24 @@
-var VERTICAL_OFFSET = 11;
-var HORIZONTAL_OFFSET = -33;
-
-function Attachment(target, attachment) {
+angular.module('rs.popover').factory('Attachment', function () {
   'use strict';
 
-  this.target = target;
-  this.attachment = attachment;
-}
+  var VERTICAL_OFFSET = 11;
+  var HORIZONTAL_OFFSET = -33;
 
-Attachment.prototype.position = function () {
-  'use strict';
+  function Attachment(element, target) {
+    this.element = element;
+    this.target = target;
+  }
 
-  var position, popoverElement;
+  Attachment.prototype.position = function () {
+    var position, popoverElement;
 
-  position = this.target.offset();
-  position.top += this.target.outerHeight() + VERTICAL_OFFSET;
-  position.left += this.target.outerWidth() / 2 + HORIZONTAL_OFFSET;
+    position = this.target.offset();
+    position.top += this.target.outerHeight() + VERTICAL_OFFSET;
+    position.left += this.target.outerWidth() / 2 + HORIZONTAL_OFFSET;
 
-  popoverElement = this.attachment.find('.rs-popover').first();
-  popoverElement.css({ top: position.top, left: position.left });
-};
+    popoverElement = $('.rs-popover', this.element).first();
+    popoverElement.css({ top: position.top, left: position.left });
+  };
 
-module.exports = Attachment;
+  return Attachment;
+});

@@ -1,41 +1,44 @@
 {
   "name": "rs-popover",
   "version": "0.0.0",
-  "description": "Angular directive for Canon popovers.",
-  "homepage": "http://rackerlabs.github.io/rs-popover",
-  "bugs": "https://github.com/rackerlabs/rs-popover/issues",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/rackerlabs/rs-popover"
-  },
   "license": "MIT",
+  "homepage": "http://rackerlabs.github.io/rs-popover",
+  "description": "Angular directive for Canon popovers.",
   "author": "Brad Gignac <bgignac@bradgignac.com>",
   "contributors": [],
+  "main": "lib/module.js",
   "keywords": [
     "angular",
     "canon",
     "rackspace"
   ],
-  "main": "lib/popover.js",
-  "engines": {},
-  "scripts": {
-    "test": "gulp test"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rackerlabs/rs-popover"
   },
-  "dependencies": {},
+  "bugs": {
+    "url": "https://github.com/rackerlabs/rs-popover/issues"
+  },
+  "scripts": {
+    "test": "gulp lint && gulp test"
+  },
   "devDependencies": {
-    "gulp": "~3.6.2",
-    "gulp-browserify": "~0.5.0",
-    "gulp-clean": "~0.2.4",
-    "gulp-connect": "~2.0.5",
-    "gulp-jshint": "~1.5.5",
-    "gulp-rename": "~1.2.0",
-    "gulp-uglify": "~0.2.1",
-    "gulp-karma": "0.0.4",
-    "jshint-stylish": "~0.2.0",
-    "karma": "~0.12.14",
-    "karma-browserifast": "~0.6.0",
-    "karma-jasmine": "~0.1.5",
-    "karma-phantomjs-launcher": "~0.1.4",
-    "partialify": "~3.1.1"
+    "bower": "^1.3.7",
+    "codeclimate-test-reporter": "0.0.3",
+    "gulp": "^3.8.6",
+    "gulp-concat": "^2.3.3",
+    "gulp-jshint": "^1.7.0",
+    "gulp-ng-html2js": "^0.1.7",
+    "gulp-rimraf": "^0.1.0",
+    "gulp-sourcemaps": "^0.4.5",
+    "gulp-uglify": "^0.3.1",
+    "gulp-webserver": "^0.3.4",
+    "jshint-stylish": "^0.4.0",
+    "karma": "^0.12.16",
+    "karma-coverage": "^0.2.4",
+    "karma-jasmine": "^0.1.5",
+    "karma-ng-html2js-preprocessor": "^0.1.0",
+    "karma-phantomjs-launcher": "^0.1.4",
+    "merge-stream": "^0.1.5"
   }
 }

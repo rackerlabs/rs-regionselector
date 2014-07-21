@@ -1,46 +1,40 @@
-var Attachment = require('./attachment');
-
-function Tether($window) {
+angular.module('rs.popover').factory('tether', function ($window, Attachment) {
   'use strict';
 
-  this.attachments = [];
+  function Tether() {
+    this.attachments = [];
 
-  angular.element($window).on('resize scroll', angular.bind(this, this.reposition));
-}
+    angular.element($window).on('resize scroll', angular.bind(this, this.reposition));
+  }
 
-Tether.prototype.attach = function (target, element) {
-  'use strict';
+  Tether.prototype.attach = function (element, target) {
+    var attachment;
 
-  var attachment;
-
-  attachment = new Attachment(target, element);
-  attachment.position();
-
-  this.attachments.push(attachment);
-
-  return attachment;
-};
-
-Tether.prototype.reposition = function () {
-  'use strict';
-
-  angular.forEach(this.attachments, function (attachment) {
+    attachment = new Attachment(element, target);
     attachment.position();
-  });
-};
 
-Tether.prototype.detach = function (element) {
-  'use strict';
+    this.attachments.push(attachment);
 
-  var index;
+    return attachment;
+  };
 
-  angular.forEach(this.attachments, function (attachment, i) {
-    if (attachment.attachment === element) {
-      index = i;
-    }
-  });
+  Tether.prototype.reposition = function () {
+    angular.forEach(this.attachments, function (attachment) {
+      attachment.position();
+    });
+  };
 
-  this.attachments.splice(index, 1);
-};
+  Tether.prototype.detach = function (element) {
+    var index;
 
-module.exports = Tether;
+    angular.forEach(this.attachments, function (attachment, i) {
+      if (attachment.element === element) {
+        index = i;
+      }
+    });
+
+    this.attachments.splice(index, 1);
+  };
+
+  return new Tether();
+});
