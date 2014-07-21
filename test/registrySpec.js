@@ -1,4 +1,6 @@
 describe('rs.popover.Registry', function () {
+  'use strict';
+
   var registry;
 
   beforeEach(module('rs.popover'));

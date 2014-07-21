@@ -1,4 +1,6 @@
 angular.module('rs.popover').factory('Attachment', function () {
+  'use strict';
+
   var VERTICAL_OFFSET = 11;
   var HORIZONTAL_OFFSET = -33;
 

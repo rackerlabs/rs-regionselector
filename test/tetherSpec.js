@@ -1,4 +1,6 @@
 describe('rs.popover.tether', function () {
+  'use strict';
+
   var $window, tether, element, target, attachment;
 
   beforeEach(module('rs.popover'));

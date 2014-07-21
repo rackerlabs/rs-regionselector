@@ -1,4 +1,6 @@
 describe('rs.popover.Attachment', function () {
+  'use strict';
+
   var target, popover, attachment;
 
   beforeEach(module('rs.popover'));

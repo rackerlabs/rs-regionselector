@@ -1,4 +1,6 @@
 describe('rs.popover.rsPopoverTrigger', function () {
+  'use strict';
+
   var scope, popover, registry;
 
   beforeEach(module('rs.popover'));

@@ -1,4 +1,6 @@
 angular.module('rs.popover').factory('tether', function ($window, Attachment) {
+  'use strict';
+
   function Tether() {
     this.attachments = [];
 
