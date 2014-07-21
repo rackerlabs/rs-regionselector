@@ -20,6 +20,7 @@
   "strict": true,
   "browser": true,
   "globals": {
+    "$": true,
     "angular": true,
     "module": true,
     "inject": true,
