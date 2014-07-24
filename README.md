@@ -1,10 +1,10 @@
-# rs-popover
+# rs-regionselector
 
 ![https://travis-ci.org/rackerlabs/rs-popover](http://img.shields.io/travis/rackerlabs/rs-popover/master.svg) 
 ![https://codeclimate.com/github/rackerlabs/rs-popover](http://img.shields.io/codeclimate/github/rackerlabs/rs-popover.svg) 
 ![https://codeclimate.com/github/rackerlabs/rs-popover](http://img.shields.io/codeclimate/coverage/github/rackerlabs/rs-popover.svg)
 
-Angular directive for [Canon](http://rackerlabs.github.io/canon) popovers.
+Angular directive for [Canon](http://rackerlabs.github.io/canon) region selector.
 
 ## Requirements
 
@@ -91,4 +91,3 @@ angular.module('my.module').controller('MyController', function (registry) {
 ## License
 
 rs-popover is released under the [MIT License](LICENSE).
-
