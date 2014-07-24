@@ -1,0 +1,29 @@
+<div class="rs-dropdown-wrapper" ng-hide="ctrl.is('closed')">
+  <div class="rs-popover-overlay" ng-click="ctrl.hide()"></div>
+  <div class="rs-dropdown" ng-show="ctrl.is('open')">
+    <ul class="rs-dropdown-menu select-menu visible">
+      <li class="rs-dropdown-item global-region-menuitem menuitem">
+        <label><input type="radio" class="check_box" name="regionSelect" ng-click="ctrl.setSelected('All Regions (Global)')" checked><label></label>
+          <span class="menuitem-label">All Regions (Global)</span>
+        </label>
+      </li>
+      <div ng-repeat="region in regions">
+        <li class="rs-dropdown-item geographic-region-menuitem menuitem" ng-class="{'rs-regionselect-disabled-item': ctrl.isDisabled(region.name)}">
+          <label><input type="radio" class="check_box" name="regionSelect" ng-disabled="ctrl.isDisabled(region.name)" ng-click="ctrl.setSelected(region.name)"><label></label>
+            <span class="geographic-region-menuitem-label menuitem-label">{{ region.name }}</span>
+          </label>
+        </li>
+        <div ng-repeat="subregion in region.subregions">
+          <li class="rs-dropdown-item menuitem" ng-class="{'rs-regionselect-disabled-item': ctrl.isDisabled(subregion.name)}">
+            <label><input type="radio" class="check_box" name="regionSelect" ng-disabled="ctrl.isDisabled(subregion.name)" ng-click="ctrl.setSelected(subregion.name)"><label></label>
+              <span class="subregion-menuitem-label menuitem-label">{{ subregion.name }}</span>
+            </label>
+          </li>
+        </div>
+      </div>
+    </ul>
+  </div>
+</div>
+<div class="rs-popover-loading" ng-show="ctrl.is('loading')">
+  <div class="rs-popover-message">{{ ctrl.state.message }}</div>
+</div>

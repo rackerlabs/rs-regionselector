@@ -1,9 +1,55 @@
-angular.module('rs.popover').controller('PopoverController', function ($scope, $element, registry, tether, Popover) {
+angular.module('rs.popover').controller('PopoverController', function ($scope, $element, registry, tether, Popover, selectedRegionRegistry) {
   'use strict';
 
   registry.register($scope.id, this);
 
   this.state = new Popover($scope.onOpen);
+
+  $scope.regions = [
+    {
+      "name": "United States",
+      "subregions": [
+        {
+          "name": "Northern Virginia (IAD)"
+        },
+        {
+          "name": "Chicago (ORD)"
+        },
+        {
+          "name": "Dallas (DFW)"
+        }
+      ]
+    },
+    {
+      "name": "Europe",
+      "subregions": [
+        {
+          "name": "London (LON)"
+        }
+      ]
+    },
+    {
+      "name": "Asia-Pacific",
+      "subregions": [
+        {
+          "name": "Hong Kong (HKG)"
+        },
+        {
+          "name": "Sydney (SYD)"
+        }
+      ]
+    }
+  ];
+
+  $scope.activeRegions = [
+    "United States",
+    "Northern Virginia (IAD)",
+    "Chicago (ORD)",
+    "Dallas (DFW)",
+    "Asia-Pacific",
+    "Hong Kong (HKG)",
+    "Sydney (SYD)"
+  ];
 
   this.id = function () {
     return $scope.id;
@@ -28,6 +74,15 @@ angular.module('rs.popover').controller('PopoverController', function ($scope, $
     } else {
       this.hide();
     }
+  };
+
+  this.setSelected = function (selected) {
+    selectedRegionRegistry.setProperty("selectedRegion", selected);
+    this.hide();
+  };
+
+  this.isDisabled = function (region) {
+    return $scope.activeRegions.indexOf(region) === -1;
   };
 });
 

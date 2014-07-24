@@ -10,3 +10,122 @@ hr {
   margin: 0;
   padding: 20px;
 }
+
+.global-region-menuitem {
+  font-weight: bold;
+}
+
+.geographic-region-menuitem {
+  font-weight: bold;
+}
+
+.select-menu {
+  position: absolute;
+  top: 0;
+  margin: -1px 0 0;
+  background-color: #fff;
+  border: 1px solid #999;
+  border-radius: 3px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  box-shadow: 0 0 9px 2px rgba(0,0,0,0.2);
+  -moz-box-shadow: 0 0 9px 2px rgba(0,0,0,0.2);
+  -webkit-box-shadow: 0 0 9px 2px rgba(0,0,0,0.2);
+  -ms-box-shadow: 0 0 9px 2px rgba(0,0,0,0.2);
+  padding: 10px 0;
+  user-select: none;
+  line-height: 25px;
+  overflow: auto;
+}
+
+.menuitem-label {
+  line-height: 25px;
+}
+
+.menuitem {
+  padding: 0 10px 0 5px;
+  white-space: nowrap;
+}
+
+.menuitem label {
+  margin: 0;
+}
+
+.menuitem label:after {
+  content: "";
+}
+
+.menuitem:hover {
+  background-color: #3282d5;
+  color: #fff;
+}
+
+.menuitem:hover .check_box:checked + label {
+  background:url(small_checkmark_white.png) no-repeat;
+}
+
+.geographic-region-menuitem-label {
+  padding: 0 10px;
+}
+
+.subregion-menuitem-label {
+  padding: 0 20px;
+}
+
+button .icon_region {
+  width: 10px;
+  margin-right: 5px;
+  background-image: url(location.png);
+}
+
+button .icon_arrow_down {
+  width: 9px;
+  margin-left: 5px;
+  background-image: url(arrow-down-666.png);
+}
+
+i {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  line-height: 16px;
+  vertical-align: text-top;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+}
+
+.check_box {
+    display:none;
+}
+
+.check_box + label{
+    height: 9px;
+    width: 16px;
+    display:inline-block;
+    padding: 0 0 0 0px;
+}
+
+.check_box:checked + label{
+    background:url(small_checkmark.png) no-repeat;
+    height: 9px;
+    width: 16px;
+    display:inline-block;
+    padding: 0 0 0 0px;
+}
+
+rs-region-selector {
+  -webkit-user-select: none;
+}
+
+rs-region-selector .rs-dropdown {
+  top: -24px;
+}
+
+.rs-regionselect-disabled-item {
+  color: #999;
+}
+
+.rs-regionselect-disabled-item:hover {
+  background-color: #fff;
+  color: #999;
+}

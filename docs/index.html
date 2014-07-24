@@ -24,6 +24,18 @@
 
     <hr>
 
+    <h1>Region Select</h1>
+    <div class="rs-btn-group">
+      <button class="rs-btn" ng-click="showRS($event)">
+        <i class="icon_region"></i>
+        <span>{{ selectedRegion || "All Regions (Global)" }}</span>
+        <i class="icon_arrow_down"></i>
+      </button>
+    </div>
+    <rs-region-selector id="region-select" selected="selectedRegion"></rs-region-selector>
+
+    <hr>
+
     <h1>Declarative Control</h1>
     <p>
       <button class="rs-btn" rs-popover-trigger="declarative-demo">Show</button>
@@ -58,7 +70,17 @@
 
   <script type="application/javascript">
 
-  angular.module('rsPopoverDemo', ['rs.popover']).controller('DemoController', function ($scope, $timeout, registry) {
+  angular.module('rsPopoverDemo', ['rs.popover']).controller('DemoController', function ($scope, $timeout, registry, selectedRegionRegistry) {
+    var updateSelectedRegion = function () {
+      $scope.selectedRegion = selectedRegionRegistry.getProperty()["selectedRegion"];
+    };
+
+    selectedRegionRegistry.registerObserverCallback(updateSelectedRegion);
+
+    $scope.showRS = function (e) {
+      registry.popover('region-select').show(angular.element(e.target));
+    };
+
     $scope.show = function (e) {
       registry.popover('programmatic-demo').show(angular.element(e.target));
     };

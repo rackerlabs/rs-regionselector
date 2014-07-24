@@ -1,7 +1,7 @@
 angular.module('rs.popover').factory('Popover', function ($q) {
   'use strict';
 
-  function Popover(onOpen) {
+  function Popover (onOpen) {
     this.state = 'closed';
     this.onOpen = onOpen || function () {
       var deferred;
