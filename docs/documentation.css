@@ -113,16 +113,12 @@ i {
     padding: 0 0 0 0px;
 }
 
-.rs-dropdown-wrapper {
-
-}
-
 rs-region-selector {
   -webkit-user-select: none;
 }
 
 rs-region-selector .rs-dropdown {
-  top: -24px;
+  top: -44px;
 }
 
 .rs-regionselect-disabled-item {

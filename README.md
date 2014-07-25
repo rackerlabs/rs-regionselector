@@ -28,7 +28,7 @@ This directive defines a region selector and can be used as either an element or
 attribute. All instances of this attribute must have a unique `id` attribute.
 
 ```
-<rs-region-selector id="region-select" trigger=".rs-dropdown"></rs-region-selector>
+<rs-region-selector id="region-select" attach=".rs-dropdown"></rs-region-selector>
 ```
 
 #### Attributes
@@ -44,9 +44,9 @@ Accepts the name of a function to be called when the popover is opened. This
 function should return a promise. A loading pattern will be displayed until the
 promise returned by this method is resolved. This attribute is optional.
 
-### `trigger`
+##### `attach`
 
-Used in the tether/attachment classes in a jQuery search for the very first occurrence of that element ("div"), id ("#id"), class (".class"), etc. Whichever element it grabs will be tethered to the bottom of this element.
+Used in the tether/attachment classes in a jQuery search for the closest occurrence of that element ("div"), id ("#id"), class (".class"), etc. It will be attached to the bottom of this element.
 
 ### Button trigger
 

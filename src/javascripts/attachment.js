@@ -15,8 +15,8 @@ angular.module('rs.popover').factory('Attachment', function () {
     position = this.target.offset();
     position.top += this.target.outerHeight() + VERTICAL_OFFSET;
     position.left += this.target.outerWidth() / 2 + HORIZONTAL_OFFSET;
-    debugger;
-    popoverElement = $(this.element.attr("trigger"), this.element).first();
+
+    popoverElement = $(this.element).find(this.element.attr("attach"));
     popoverElement.css({ top: position.top, left: position.left });
   };
 

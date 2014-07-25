@@ -15,14 +15,23 @@
   <div class="rs-container" style="padding-top: 50px;" ng-controller="DemoController">
     <h1>Region Select</h1>
     <div class="rs-btn-group">
-      <button class="rs-btn" ng-click="show($event)" trigger="region-select">
+      <button class="rs-btn" ng-click="show($event)" trigger="rs1">
         <i class="icon_region"></i>
         <span>{{ selectedRegion || "All Regions (Global)" }}</span>
         <i class="icon_arrow_down"></i>
       </button>
     </div>
 
-    <rs-region-selector id="region-select"></rs-region-selector>
+    <i class="rs-icon-help" style="margin-top:4px;" ng-mouseover="show($event)" trigger="rs2"></i>
+
+    <!-- REGION SELECT -->
+    <rs-region-selector id="rs1" attach=".rs-btn"></rs-region-selector>
+
+    <!-- POPOVER -->
+    <rs-popover id="rs2" attach=".rs-popover">This is a POPOVER, when you click elsewhere, I'll vanish!</rs-popover>
+
+    <!-- TOOLTIP -->
+    <rs-tooltip id="rs3" attach=".rs-popover">This is a TOOLTIP, when you hover elsewhere, I'll disappear!!!!!! TESTESTESTESTESTESTESTESTESTESTESTESTESETESTSETESTS</rs-tooltip>
     
     <hr>
 
