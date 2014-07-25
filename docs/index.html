@@ -15,14 +15,15 @@
   <div class="rs-container" style="padding-top: 50px;" ng-controller="DemoController">
     <h1>Region Select</h1>
     <div class="rs-btn-group">
-      <button class="rs-btn" ng-click="showRS($event)">
+      <button class="rs-btn" ng-click="show($event)" trigger="region-select">
         <i class="icon_region"></i>
         <span>{{ selectedRegion || "All Regions (Global)" }}</span>
         <i class="icon_arrow_down"></i>
       </button>
     </div>
-    <rs-region-selector id="region-select" selected="selectedRegion"></rs-region-selector>
 
+    <rs-region-selector id="region-select"></rs-region-selector>
+    
     <hr>
 
     <h1>Servers</h1>
@@ -43,8 +44,8 @@
 
     selectedRegionRegistry.registerObserverCallback(updateSelectedRegion);
 
-    $scope.showRS = function (e) {
-      registry.popover('region-select').show(angular.element(e.target));
+    $scope.show = function (e) {
+      registry.popover(angular.element(e.currentTarget).attr("trigger")).show(angular.element(e.target));
     };
   });
 

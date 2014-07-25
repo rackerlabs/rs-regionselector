@@ -1,9 +1,5 @@
 # rs-regionselector
 
-![https://travis-ci.org/rackerlabs/rs-popover](http://img.shields.io/travis/rackerlabs/rs-popover/master.svg) 
-![https://codeclimate.com/github/rackerlabs/rs-popover](http://img.shields.io/codeclimate/github/rackerlabs/rs-popover.svg) 
-![https://codeclimate.com/github/rackerlabs/rs-popover](http://img.shields.io/codeclimate/coverage/github/rackerlabs/rs-popover.svg)
-
 Angular directive for [Canon](http://rackerlabs.github.io/canon) region selector.
 
 ## Requirements
@@ -21,27 +17,25 @@ directly from the GitHub repository.
 To install with Bower, add the following line to dependencies in your bower.json:
 
 ```
-"rs-popover": "https://github.com/rackerlabs/rs-popover.git"
+"rs-regionselector": "https://github.com/rackerlabs/rs-regionselector.git"
 ```
 
 ## Usage
 
-### `rs-popover`
+### `rs-region-selector`
 
-This directive defines a popover and can be used as either an element or an
+This directive defines a region selector and can be used as either an element or an
 attribute. All instances of this attribute must have a unique `id` attribute.
 
 ```
-<rs-popover id="myPopover">
-  This is popover content!
-</rs-popover>
+<rs-region-selector id="region-select" trigger=".rs-dropdown"></rs-region-selector>
 ```
 
 #### Attributes
 
 ##### `id`
 
-Accepts any unique string used to identity this popover. This attribute is 
+Accepts any unique string used to identity this directive. This attribute is 
 required and must be unique across all other elements on the page.
 
 ##### `on-open`
@@ -50,40 +44,41 @@ Accepts the name of a function to be called when the popover is opened. This
 function should return a promise. A loading pattern will be displayed until the
 promise returned by this method is resolved. This attribute is optional.
 
-### `rs-popover-trigger`
+### `trigger`
 
-This directive toggles a popover's visibility and can only be used as an 
-attribute.
+Used in the tether/attachment classes in a jQuery search for the very first occurrence of that element ("div"), id ("#id"), class (".class"), etc. Whichever element it grabs will be tethered to the bottom of this element.
+
+### Button trigger
 
 ```
-<button rs-popover-trigger="myPopover">Toggle Me!</button>
+<button class="rs-btn" ng-click="show($event)" trigger="region-select">Toggle Me!</button>
 ```
 
 #### Attributes
 
-##### `rs-popover-trigger`
+##### `ng-click`
 
-Accepts the ID of the popover it should toggle. If this attribute is used inside
-of a popover, it defaults to toggling the containing popover.
+Calls on the controller show method used to display the directive this button is linked to
 
-### Programmatic Control
+##### `trigger`
 
-In addition to the `rs-popover-trigger` directive for toggling popover 
-visibility, this package also provides a service that can be used to control 
-popovers programmatically.
+The ID of the directive item this button toggles. Can be used for toggling popovers as well as
+region selector menus
+
+### Controller
+
+The selectedRegionRegistry is used to store values and can be be injected to any controller, which can then use that registry to get said values. I use a callback function from the registry to update the scope value whenever the selected region changes.
 
 ```
-angular.module('my.module').controller('MyController', function (registry) {
-  $scope.toggle = function (e) {
-    registry.popover('somepopoverid').toggle(e.target);
+angular.module('rsPopoverDemo', ['rs.popover']).controller('DemoController', function ($scope, $timeout, registry, selectedRegionRegistry) {
+  var updateSelectedRegion = function () {
+    $scope.selectedRegion = selectedRegionRegistry.getProperty()["selectedRegion"];
   };
+
+  selectedRegionRegistry.registerObserverCallback(updateSelectedRegion);
 
   $scope.show = function (e) {
-    registry.popover('somepopoverid').show(e.target);
-  };
-
-  $scope.hide = function () {
-    registry.popover('somepopoverid').hide();
+    registry.popover(angular.element(e.currentTarget).attr("trigger")).show(angular.element(e.target));
   };
 });
 ```

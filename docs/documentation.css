@@ -113,8 +113,11 @@ i {
     padding: 0 0 0 0px;
 }
 
+.rs-dropdown-wrapper {
+
+}
+
 rs-region-selector {
-  /*position:absolute;*/
   -webkit-user-select: none;
 }
 
