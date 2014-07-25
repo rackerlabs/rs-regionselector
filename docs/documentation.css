@@ -114,6 +114,7 @@ i {
 }
 
 rs-region-selector {
+  /*position:absolute;*/
   -webkit-user-select: none;
 }
 
@@ -128,4 +129,33 @@ rs-region-selector .rs-dropdown {
 .rs-regionselect-disabled-item:hover {
   background-color: #fff;
   color: #999;
+}
+
+.item {
+  display: inline-block;
+  border: 1px #ccc solid;
+  padding: 4px 8px;
+  margin: 2px 2px 2px 1px;
+  font-size: 11px;
+  color: #333;
+  border-radius: 3px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  background: #fff;
+  background: -moz-linear-gradient(top,#fff 75%,#d8d8d8 150%);
+  background: -webkit-gradient(linear,left top,left bottom,color-stop(75%,#fff),color-stop(150%,#d8d8d8));
+  background: -webkit-linear-gradient(top,#fff 75%,#d8d8d8 150%);
+  background: -o-linear-gradient(top,#fff 75%,#d8d8d8 150%);
+  background: -ms-linear-gradient(top,#fff 75%,#d8d8d8 150%);
+  background: linear-gradient(top,#fff 75%,#d8d8d8 150%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff',endColorstr='#d8d8d8',GradientType=0);
+}
+
+.item span {
+  display: inline-block;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  height: 100%;
+  max-width: 100px;
 }
